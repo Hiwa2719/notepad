@@ -11,4 +11,4 @@ class Note(models.Model):
         return self.text[:55]
 
     def get_absolute_url(self):
-        return reverse('api:get_note', kwargs={'pk': self.pk})
+        return reverse('api:get-note', kwargs={'pk': self.pk})
