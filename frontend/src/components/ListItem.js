@@ -7,3 +7,5 @@ const ListItem = note => {
         <Link to={note.get_absolute_url}>{note.__str__}</Link>
     )
 }
+
+export default ListItem
