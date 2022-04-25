@@ -12,7 +12,7 @@ export default class NotesPage extends React.Component{
     }
 
     componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/notes/')
+        axios.get('/api/notes/')
             .then(response => {
                 this.setState({
                     notes: response.data
