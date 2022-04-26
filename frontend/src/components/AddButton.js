@@ -13,7 +13,7 @@ const withRouter = (Component) => {
 
 const AddButton = props => {
     const clickHandler = () => {
-        props.navigate('/api/note/new/')
+        props.navigate('/api/notes/create/')
     }
     return (
         <div className='position-absolute bottom-0 end-0 m-3 bg-warning p-3 rounded-circle add-button'>

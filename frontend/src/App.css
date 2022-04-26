@@ -19,3 +19,7 @@
     transform: scale(1.05, 1.05);
     box-shadow: 2px 3px 15px rgba(0, 0, 0, 0.3);
 }
+
+.arrow-button{
+    fill: rgb(255, 193, 7);
+}
