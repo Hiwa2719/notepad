@@ -1,6 +1,7 @@
 import React from "react";
 import ListItem from "../components/ListItem";
 import axios from "axios";
+import AddButton from '../components/AddButton'
 
 
 export default class NotesPage extends React.Component{
@@ -27,11 +28,12 @@ export default class NotesPage extends React.Component{
     render(){
         const {notes} = this.state
         return(
-            <div>
+            <>
                 {
                     notes.map(note => <ListItem key={note.id} note={note}/>)
                 }
-            </div>
+                <AddButton/>
+            </>
         )
     }
 }

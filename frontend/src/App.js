@@ -12,7 +12,7 @@ function App() {
             <main className="bg-dark vh-100 d-flex align-items-center justify-content-center">
                 <div className="h-75 d-flex flex-column text-light w-25">
                     <Header/>
-                    <div className="bg-secondary h-100 py-1">
+                    <div className="bg-secondary h-100 py-1 position-relative">
                         <Routes>
                             <Route path='/' element={<NotesPage/>}/>
                             <Route path='/api/notes/' element={<NotesPage/>}/>
