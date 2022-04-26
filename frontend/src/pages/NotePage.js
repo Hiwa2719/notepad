@@ -3,6 +3,10 @@ import {useParams} from "react-router-dom";
 import axios from "axios";
 
 
+const style = {
+    height: '70vh'
+}
+
 const withRouter = (Component) => {
     const Wrapper = (props) => {
         const params = useParams()
@@ -46,8 +50,8 @@ class NotePage extends React.Component{
     render(){
         const {text} = this.state
         return(
-            <div>
-                <textarea defaultValue={text} onChange={this.changeHandler} cols="50" rows='50'></textarea>
+            <div className="d-flex flex-column">
+                <textarea defaultValue={text} onChange={this.changeHandler} className='second'></textarea>
             </div>
         )
     }

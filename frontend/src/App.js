@@ -2,17 +2,25 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import './App.css';
 import NotesPage from "./pages/NotesPage";
 import NotePage from "./pages/NotePage";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Header from './components/Header'
+
 
 function App() {
     return (
         <Router>
-            <div className="bg-dark">
-                <h1>hello world</h1>
-                <Routes>
-                    <Route path='/' element={<NotesPage/>}/>
-                    <Route path='/api/notes/:id' element={<NotePage/>}/>
-                </Routes>
-            </div>
+            <main className="bg-dark vh-100 d-flex align-items-center justify-content-center">
+                <div className="h-75 d-flex flex-column text-light w-25">
+                    <Header/>
+                    <div className="bg-secondary h-100 py-1">
+                        <Routes>
+                            <Route path='/' element={<NotesPage/>}/>
+                            <Route path='/api/notes/' element={<NotesPage/>}/>
+                            <Route path='/api/notes/:id' element={<NotePage/>}/>
+                        </Routes>
+                    </div>
+                </div>
+            </main>
         </Router>
     );
 }
