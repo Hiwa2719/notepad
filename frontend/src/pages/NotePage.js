@@ -53,10 +53,25 @@ class NotePage extends React.Component {
 
     arrowHandler = () => {
         console.log(this.state.text)
-        let note = this.state.note
+        let {text, note} = this.state
         if (!note) return
-        if (!this.state.text) return axios.delete(`/api/notes/delete/${note.id}/`)
-        axios.post(`/api/notes/update/${note.id}/`)
+        if (!text) return this.deleteNote()
+        note.text = this.state.text
+        axios.put(`/api/notes/update/${note.id}/`, note)
+            .catch(error => {
+                console.log('Error')
+                console.log(error)
+            })
+    }
+
+    deleteNote= () => {
+        axios.delete(`/api/notes/delete/${this.state.note.id}/`)
+    }
+
+    createHandler = () => {
+        let text = this.state.text
+        if (!text) return
+        axios.post('/api/notes/create/', {text: text})
             .catch(error => {
                 console.log('Error')
                 console.log(error)
@@ -64,14 +79,20 @@ class NotePage extends React.Component {
     }
 
     render() {
-        const {text} = this.state
+        const {text, note} = this.state
         return (
             <div className="d-flex flex-column p-1">
                 <div className="m-2 d-flex flex-row justify-content-between text-warning">
                     <Link to="/">
                         <ArrowLeft className="arrow-button " onClick={this.arrowHandler}/>
                     </Link>
-                    <h3 className="">Done</h3>
+                    <Link to="/" className="text-decoration-none text-warning">
+                        {note ?
+                            <h3 onClick={this.deleteNote}>Delete</h3>:
+                            <h3 onClick={this.createHandler}>Done</h3>
+                        }
+                    </Link>
+
                 </div>
                 <textarea defaultValue={text} onInput={this.changeHandler} className='second bg-secondary border-0'
                           ref={this.textareaRef}></textarea>

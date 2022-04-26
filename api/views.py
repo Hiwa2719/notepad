@@ -28,7 +28,7 @@ def delete_note(request, pk):
 
 @api_view(['POST'])
 def create_note(request):
-    serializer = NoteSerializer(request.data)
+    serializer = NoteSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(serializer.data)
