@@ -8,7 +8,13 @@ class Note(models.Model):
     created = models.DateTimeField(auto_now_add=True, help_text='created date')
 
     def __str__(self):
-        return self.text[:55]
+        title = self.text.split('\n')[0]
+        if len(title) < 38:
+            return title
+        return self.text[:32] + ' ... .'
 
     def get_absolute_url(self):
         return reverse('api:get-note', kwargs={'pk': self.pk})
+
+    def formated_updated(self):
+        return self.updated.strftime('%x %X')

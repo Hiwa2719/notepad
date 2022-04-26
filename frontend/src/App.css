@@ -1,11 +1,19 @@
 
+
+
 .list-item:hover {
     background-color: black;
     cursor: pointer;
 }
 
-.second {
+.textarea {
     height: 63vh;
+}
+
+.textarea:focus,
+.textarea:active {
+    outline: none;
+    border: none;
 }
 
 .add-button {

@@ -94,7 +94,7 @@ class NotePage extends React.Component {
                     </Link>
 
                 </div>
-                <textarea defaultValue={text} onInput={this.changeHandler} className='second bg-secondary border-0'
+                <textarea defaultValue={text} onInput={this.changeHandler} className='textarea bg-secondary border-0'
                           ref={this.textareaRef}></textarea>
             </div>
         )
