@@ -7,7 +7,7 @@ from rest_framework.decorators import api_view
 
 @api_view()
 def get_notes(request):
-    notes = Note.objects.all().order_by('-updated')
+    notes = Note.objects.all()
     serializer = NoteSerializer(notes, many=True)
     return Response(serializer.data)
 
