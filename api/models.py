@@ -18,3 +18,8 @@ class Note(models.Model):
 
     def formated_updated(self):
         return self.updated.strftime('%x %X')
+
+
+class Task(models.Model):
+    note = models.OneToOneField(Note, on_delete=models.CASCADE)
+    reminder_time = models.DateTimeField()
