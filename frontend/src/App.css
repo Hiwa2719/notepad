@@ -31,3 +31,21 @@
 .arrow-button{
     fill: rgb(255, 193, 7);
 }
+
+.block-tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    color: #6a6666;
+}
+.block-tabs .tab {
+    margin: 5% 10% 10% 10%;
+    transform: scale(4,4);
+}
+.block-tabs .tab:hover {
+    cursor: pointer;
+}
+
+.block-tabs .active-tab {
+    color: rgb(255, 193, 7)
+}
