@@ -34,6 +34,7 @@ export default class NotesPage extends React.Component {
     }
 
     toggleTab = (index) =>{
+        console.log(index)
         this.setState({showIndex: index})
     }
 
@@ -41,10 +42,10 @@ export default class NotesPage extends React.Component {
         const {notes, showIndex} = this.state
         return (
             <><div className="block-tabs">
-                <div className={showIndex === 0 ? "tab active-tab" : "tab"} onClick={() => this.toggleTab(1)}>
+                <div className={showIndex === 0 ? "tab active-tab" : "tab"} onClick={() => this.toggleTab(0)}>
                     <NoteSVG/>
                 </div>
-                <div className={showIndex === 1 ? "tab active-tab" : "tab"} onClick={() => this.toggleTab(2)}>
+                <div className={showIndex === 1 ? "tab active-tab" : "tab"} onClick={() => this.toggleTab(1)}>
                     <TaskSVG/>
                 </div>
             </div>

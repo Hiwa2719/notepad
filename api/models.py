@@ -14,7 +14,7 @@ class Note(models.Model):
         return self.text[:32] + ' ... .'
 
     def get_absolute_url(self):
-        return reverse('api:get-note', kwargs={'pk': self.pk})
+        return reverse('api:get-note', kwargs={'model': 'notes', 'pk': self.pk})
 
     def formated_updated(self):
         return self.updated.strftime('%x %X')
