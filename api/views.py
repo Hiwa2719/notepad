@@ -4,7 +4,7 @@ from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 
 from .models import Note, Task
-from .serializers import NoteSerializer
+from .serializers import NoteSerializer, TaskSerializer
 
 MODELS = {
     'notes': Note,
@@ -12,25 +12,31 @@ MODELS = {
 }
 
 SERIALIZERS = {
-    'notes': NoteSerializer
+    'notes': NoteSerializer,
+    'tasks': TaskSerializer
+}
+
+ORDER_BY = {
+    'notes': '-updated',
+    'tasks': '-note__updated'
 }
 
 
-class CheckModelMixin():
+class CheckModelMixin:
+    """This mixin checks whether this model name in url is matched with MODELS"""
     def dispatch(self, request, *args, **kwargs):
         model = kwargs.get('model')
         if model not in MODELS:
             return Response(status=status.HTTP_404_NOT_FOUND)
-        self.model_name = model
+        self.model = MODELS[model]
+        self.order_by_string = ORDER_BY[model]
+        self.serializer_class = SERIALIZERS[model]
         return super().dispatch(request, *args, **kwargs)
 
 
 class ItemsListView(CheckModelMixin, ListAPIView):
     def get_queryset(self):
-        return MODELS[self.model_name].objects.all().order_by('updated')
-
-    def get_serializer_class(self):
-        return SERIALIZERS[self.model_name]
+        return self.model.objects.all().order_by(self.order_by_string)
 
 
 @api_view()
