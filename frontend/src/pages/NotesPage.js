@@ -2,10 +2,10 @@ import React from "react";
 import ListItem from "../components/ListItem";
 import axios from "axios";
 import AddButton from '../components/AddButton'
-import {ReactComponent as NoteSVG } from "../assets/note.svg";
-import {ReactComponent as TaskSVG } from "../assets/task.svg"
+import {ReactComponent as NoteSVG} from "../assets/note.svg";
+import {ReactComponent as TaskSVG} from "../assets/task.svg"
 
-export default class NotesPage extends React.Component {
+export default class NotesPage extends React.PureComponent {
     constructor() {
         super();
         this.state = {
@@ -15,12 +15,22 @@ export default class NotesPage extends React.Component {
     }
 
     componentDidMount() {
+        this.getData()
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('updating')
+        if (prevState.showIndex !== this.state.showIndex) {
+            this.getData()
+            console.log('updated')
+        }
+    }
+
+    getData() {
         let url = [
             '/api/notes/',
             '/api/tasks/',
         ]
-        console.log(this.state.showIndex)
-        console.log(url[this.state.showIndex])
         axios.get(url[this.state.showIndex])
             .then(response => {
                 this.setState({
@@ -33,22 +43,22 @@ export default class NotesPage extends React.Component {
             })
     }
 
-    toggleTab = (index) =>{
-        console.log(index)
+    toggleTab = (index) => {
         this.setState({showIndex: index})
     }
 
     render() {
         const {notes, showIndex} = this.state
         return (
-            <><div className="block-tabs">
-                <div className={showIndex === 0 ? "tab active-tab" : "tab"} onClick={() => this.toggleTab(0)}>
-                    <NoteSVG/>
+            <>
+                <div className="block-tabs">
+                    <div className={showIndex === 0 ? "tab active-tab" : "tab"} onClick={() => this.toggleTab(0)}>
+                        <NoteSVG/>
+                    </div>
+                    <div className={showIndex === 1 ? "tab active-tab" : "tab"} onClick={() => this.toggleTab(1)}>
+                        <TaskSVG/>
+                    </div>
                 </div>
-                <div className={showIndex === 1 ? "tab active-tab" : "tab"} onClick={() => this.toggleTab(1)}>
-                    <TaskSVG/>
-                </div>
-            </div>
                 {
                     notes.map(note => <ListItem key={note.id} note={note}/>)
                 }
