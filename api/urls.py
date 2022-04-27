@@ -7,9 +7,9 @@ app_name = 'api'
 urlpatterns = [
     path('<str:model>/', include([
         path('', views.ItemsListView.as_view(), name='get-note'),
-        path('<int:pk>/', views.get_note, name='get-note'),
-        path('delete/<int:pk>/', views.delete_note, name='delete-note'),
-        path('update/<int:pk>/', views.update_note, name='update-note'),
-        path('create/', views.create_note, name='create-note'),
+        path('<int:pk>/', views.ItemRetrieveView.as_view(), name='get-note'),
+        path('delete/<int:pk>/', views.ItemDeleteView.as_view(), name='delete-note'),
+        path('update/<int:pk>/', views.ItemUpdateView.as_view(), name='update-note'),
+        path('create/', views.ItemCreateView.as_view(), name='create-note'),
     ])),
 ]
