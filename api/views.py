@@ -15,11 +15,6 @@ SERIALIZERS = {
     'tasks': TaskSerializer
 }
 
-ORDER_BY = {
-    'notes': '-updated',
-    'tasks': '-note__updated'
-}
-
 
 class CheckModelMixin:
     """This mixin checks whether this model name in url is matched with MODELS
@@ -33,7 +28,6 @@ class CheckModelMixin:
             response = Response(status=status.HTTP_404_NOT_FOUND)
             return self.finalize_response(request, response, *args, **kwargs)
         self.model = MODELS[model]
-        self.order_by_string = ORDER_BY[model]
         self.serializer_class = SERIALIZERS[model]
         return super().dispatch(request, *args, **kwargs)
 
@@ -43,7 +37,7 @@ class CheckModelMixin:
 
 class ItemsListView(CheckModelMixin, ListAPIView):
     def get_queryset(self):
-        return self.model.objects.all().order_by(self.order_by_string)
+        return self.model.objects.all().order_by('-updated')
 
 
 class ItemRetrieveView(CheckModelMixin, RetrieveAPIView):

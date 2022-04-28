@@ -11,4 +11,4 @@ class NoteSerializer(serializers.ModelSerializer):
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Task
-        fields = '__all__'
+        fields = 'id', 'text', 'formated_updated', '__str__', 'get_absolute_url'
