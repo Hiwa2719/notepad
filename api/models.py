@@ -30,3 +30,6 @@ class Note(BaseAbstractModel):
 
 class Task(BaseAbstractModel):
     reminder_time = models.DateTimeField()
+
+    def formated_updated(self):
+        return self.reminder_time.strftime('%x %X')

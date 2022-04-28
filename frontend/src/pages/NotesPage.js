@@ -10,32 +10,28 @@ export default class NotesPage extends React.PureComponent {
         super();
         this.state = {
             notes: [],
+            tasks: [],
             showIndex: 0,
         }
     }
 
     componentDidMount() {
-        this.getData()
+        this.getData('/api/notes/', 'notes')
+        this.getData('/api/tasks/', 'tasks')
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log('updating')
-        if (prevState.showIndex !== this.state.showIndex) {
-            this.getData()
-            console.log('updated')
-        }
-    }
+    // componentDidUpdate(prevProps, prevState, snapshot) {
+    //     console.log('updating')
+    //     if (prevState.showIndex !== this.state.showIndex) {
+    //         this.getData()
+    //         console.log('updated')
+    //     }
+    // }
 
-    getData() {
-        let url = [
-            '/api/notes/',
-            '/api/tasks/',
-        ]
-        axios.get(url[this.state.showIndex])
+    getData(url, container) {
+        axios.get(url)
             .then(response => {
-                this.setState({
-                    notes: response.data
-                })
+                this.setState({[container]: response.data})
             })
             .catch(error => {
                 console.log('Error')
@@ -48,7 +44,7 @@ export default class NotesPage extends React.PureComponent {
     }
 
     render() {
-        const {notes, showIndex} = this.state
+        const {notes, tasks, showIndex} = this.state
         return (
             <>
                 <div className="block-tabs">
@@ -59,10 +55,18 @@ export default class NotesPage extends React.PureComponent {
                         <TaskSVG/>
                     </div>
                 </div>
-                {
-                    notes.map(note => <ListItem key={note.id} note={note}/>)
-                }
-                <AddButton/>
+                <div className={showIndex === 0 ? "" : "d-none"}>
+                    {
+                        notes.map(note => <ListItem key={note.id} note={note}/>)
+                    }
+                    <AddButton url="/api/notes/create/"/>
+                </div>
+                <div className={showIndex === 1 ? "" : "d-none"}>
+                    {
+                        tasks.map(task => <ListItem key={task.id} note={task}/>)
+                    }
+                    <AddButton url="/api/tasks/create/"/>
+                </div>
             </>
         )
     }
