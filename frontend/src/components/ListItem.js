@@ -1,6 +1,7 @@
 import React from "react";
 import {Link} from 'react-router-dom'
-import moment, {utc} from "moment";
+import axios from "axios";
+import moment from "moment";
 
 
 class ListItem extends React.Component {
@@ -10,19 +11,15 @@ class ListItem extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.note)
-        // if(this.props)
-        // let currentTimeInMilliseconds = Date.now()
-        // // console.log(this.props.note.formated_updated)
-        // // console.log('now ', currentTimeInMilliseconds)
-        // let date = moment(this.props.note.formated_updated, 'x X')
-        // // let date = Date.parse(this.props.note.formated_updated.toString());
-        // console.log('dat ', date.utc())
-        // let diff = date*1000 - currentTimeInMilliseconds
-        // console.log('difference: ', diff)
-        // // setTimeout(() => {
-        // //     alert('hello world')
-        // // }, diff)
+        let {note} = this.props
+        if (note.reminder_time) {
+            let currentTimeInMilliseconds = Date.now()
+            let time = moment(note.reminder_time)
+            let diff = time.unix() * 1000 - currentTimeInMilliseconds
+            setTimeout(() => {
+                alert('hello world')
+            }, diff)
+        }
     }
 
     render() {
