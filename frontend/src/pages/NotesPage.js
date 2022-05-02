@@ -4,6 +4,7 @@ import axios from "axios";
 import AddButton from '../components/AddButton'
 import {ReactComponent as NoteSVG} from "../assets/note.svg";
 import {ReactComponent as TaskSVG} from "../assets/task.svg"
+import ReminderModal from "../components/ReminderModal";
 
 export default class NotesPage extends React.PureComponent {
     constructor() {
@@ -17,6 +18,10 @@ export default class NotesPage extends React.PureComponent {
 
     componentDidMount() {
         this.getData('/api/notes/', 'notes')
+        this.getData('/api/tasks/', 'tasks')
+    }
+
+    tasksChanged = ()=> {
         this.getData('/api/tasks/', 'tasks')
     }
 
@@ -66,6 +71,13 @@ export default class NotesPage extends React.PureComponent {
                         tasks.map(task => <ListItem key={task.id} note={task}/>)
                     }
                     <AddButton url="/api/tasks/create/"/>
+                </div>
+                <div>
+                    {
+                        tasks.map(task =>
+                        <ReminderModal key={task.id} task={task} taskChanged={this.tasksChanged}/>
+                        )
+                    }
                 </div>
             </>
         )

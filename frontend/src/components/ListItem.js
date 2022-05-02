@@ -1,7 +1,5 @@
 import React from "react";
 import {Link} from 'react-router-dom'
-import moment from "moment";
-import ReminderModal from "./ReminderModal";
 
 
 class ListItem extends React.Component {
@@ -13,29 +11,8 @@ class ListItem extends React.Component {
         }
     }
 
-    componentDidMount() {
-        let {note} = this.props
-        if (note.reminder_time) {
-            let currentTimeInMilliseconds = Date.now()
-            let time = moment(note.reminder_time)
-            let diff = time.unix() * 1000 - currentTimeInMilliseconds
-            setTimeout(() => {
-                this.setState({
-                    openModal: true
-                })
-            }, diff)
-        }
-    }
-
-    toggleOpenModal = (obj) => {
-        this.setState({
-            openModal: obj
-        })
-    }
-
     render() {
         const {note} = this.props
-        const {openModal} = this.state
         return (
             <div>
                 <Link to={note.get_absolute_url} ref={this.itemRef}
@@ -43,9 +20,6 @@ class ListItem extends React.Component {
                     <h4>{note.__str__}</h4>
                     <small>{note.formated_updated}</small>
                 </Link>
-                {note.reminder_time &&
-                    <ReminderModal openModal={openModal} setOpenModal={this.toggleOpenModal} note={note}/>
-                }
             </div>
         )
     }
