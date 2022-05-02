@@ -4,9 +4,12 @@ import NotesPage from "./pages/NotesPage";
 import NotePage from "./pages/NotePage";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Header from './components/Header'
+import ReminderModal from "./components/ReminderModal";
+import {useState} from "react";
 
 
 function App() {
+    const [openModal, setOpenModal] = useState(true)
     return (
         <Router>
             <main className="bg-dark vh-100 d-flex align-items-center justify-content-center">
@@ -20,6 +23,7 @@ function App() {
                         </Routes>
                     </div>
                 </div>
+            <ReminderModal openModal={openModal} setOpenModal={setOpenModal}/>
             </main>
         </Router>
     );

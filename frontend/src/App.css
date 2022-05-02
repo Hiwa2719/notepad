@@ -1,6 +1,4 @@
 
-
-
 .list-item:hover {
     background-color: black;
     cursor: pointer;
@@ -28,7 +26,7 @@
     box-shadow: 2px 3px 15px rgba(0, 0, 0, 0.3);
 }
 
-.arrow-button{
+.arrow-button {
     fill: rgb(255, 193, 7);
 }
 
@@ -38,14 +36,54 @@
     justify-content: center;
     color: #6a6666;
 }
+
 .block-tabs .tab {
     margin: 5% 10% 10% 10%;
-    transform: scale(4,4);
+    transform: scale(4, 4);
 }
+
 .block-tabs .tab:hover {
     cursor: pointer;
 }
 
 .block-tabs .active-tab {
     color: rgb(255, 193, 7)
+}
+
+.overlay, .modal-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.overlay {
+    background-color: rgba(145, 145, 145, 0.5);
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    z-index: 100;
+}
+
+.reminder-modal {
+    width: 35%;
+    height: 40%;
+    border-radius: 10px;
+    background-color: rgb(13, 202, 240);
+    position: relative;
+}
+
+.close-modal {
+    transform: scale(1.5);
+    display: inline;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 5px 15px;
+    cursor: pointer;
+}
+
+.modal-inner {
+    text-align: center;
+    height: 90%;
 }
