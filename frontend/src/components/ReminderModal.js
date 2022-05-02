@@ -1,7 +1,7 @@
 import React from "react";
 
 
-const ReminderModal = ({openModal, setOpenModal}) => {
+const ReminderModal = ({openModal, setOpenModal, note}) => {
 
     const closeHandler = () => {
         setOpenModal(false)
