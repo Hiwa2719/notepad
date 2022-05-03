@@ -15,7 +15,7 @@ class ListItem extends React.Component {
     componentDidMount() {
         let {note} = this.props
         this.setState({
-            time: moment(note.reminder_time).format('MM/DD/YYYY HH:mm:SS')
+            time: moment(note.reminder_time).format('MM/DD/YYYY HH:mm:ss')
         })
     }
 
