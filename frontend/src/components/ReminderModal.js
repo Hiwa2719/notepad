@@ -57,7 +57,7 @@ class ReminderModal extends React.Component {
                     <div className="close-modal" onClick={this.closeHandler}>X</div>
                     <div className="modal-inner">
                         <h3>You sat following reminder for this time: {task.formatted_updated}</h3>
-                        <p>{task.text}</p>
+                        <h2 className="my-5">{task.text}</h2>
                         <button className="btn btn-warning" onClick={this.deleteTask}>Delete</button>
                     </div>
                 </div>
