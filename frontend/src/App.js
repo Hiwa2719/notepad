@@ -4,6 +4,7 @@ import NotesPage from "./pages/NotesPage";
 import NotePage from "./pages/NotePage";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Header from './components/Header'
+import TaskPage from "./pages/TaskPage";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
                             <Route path='/' element={<NotesPage/>}/>
                             <Route path='/api/notes/' element={<NotesPage/>}/>
                             <Route path='/api/notes/:id' element={<NotePage/>}/>
+                            <Route path='/api/tasks/:id' element={<TaskPage/>}/>
                         </Routes>
                     </div>
                 </div>
