@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import axios from "axios";
 import {ReactComponent as ArrowLeft} from "../assets/arrow-left.svg";
 import withRouter from '../components/withRouter'
@@ -42,7 +42,6 @@ class NotePage extends React.Component {
     }
 
     arrowHandler = () => {
-        console.log(this.state.text)
         let {text, note} = this.state
         if (!note) return
         if (!text) return this.deleteNote()
@@ -52,10 +51,12 @@ class NotePage extends React.Component {
                 console.log('Error')
                 console.log(error)
             })
+        this.rerenderState()
     }
 
-    deleteNote= () => {
+    deleteNote = () => {
         axios.delete(`/api/notes/delete/${this.state.note.id}/`)
+        this.rerenderState()
     }
 
     createHandler = () => {
@@ -66,6 +67,11 @@ class NotePage extends React.Component {
                 console.log('Error')
                 console.log(error)
             })
+        this.rerenderState()
+    }
+
+    rerenderState = () => {
+        this.props.setListType()
     }
 
     render() {
@@ -78,11 +84,10 @@ class NotePage extends React.Component {
                     </Link>
                     <Link to="/" className="text-decoration-none text-warning">
                         {note ?
-                            <h3 onClick={this.deleteNote}>Delete</h3>:
+                            <h3 onClick={this.deleteNote}>Delete</h3> :
                             <h3 onClick={this.createHandler}>Done</h3>
                         }
                     </Link>
-
                 </div>
                 <textarea defaultValue={text} onInput={this.changeHandler} className='textarea bg-secondary border-0'
                           ref={this.textareaRef}></textarea>

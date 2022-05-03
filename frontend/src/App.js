@@ -21,8 +21,8 @@ function App() {
                             <Route path='/' element={<NotesPage setListType={setListType}/>}/>
                             <Route path='/api/notes/' element={<NotesPage setListType={setListType}/>}/>
                             <Route path='/api/tasks/' element={<TasksPage setListType={setListType}/>}/>
-                            <Route path='/api/notes/:id' element={<NotePage/>}/>
-                            <Route path='/api/tasks/:id' element={<TaskPage/>}/>
+                            <Route path='/api/notes/:id' element={<NotePage setListType={setListType}/>}/>
+                            <Route path='/api/tasks/:id' element={<TaskPage setListType={setListType}/>}/>
                         </Routes>
                     </div>
                 </div>

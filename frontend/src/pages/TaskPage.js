@@ -55,10 +55,12 @@ class TaskPage extends React.Component {
                 console.log('Error')
                 console.log(error)
             })
+        this.rerenderState()
     }
 
     deleteTask = () => {
         axios.delete(`/api/tasks/delete/${this.state.task.id}/`)
+        this.rerenderState()
     }
 
     createHandler = () => {
@@ -71,6 +73,11 @@ class TaskPage extends React.Component {
                 console.log('Error')
                 console.log(error)
             })
+        this.rerenderState()
+    }
+
+    rerenderState = () => {
+        this.props.setListType()
     }
 
     render() {
