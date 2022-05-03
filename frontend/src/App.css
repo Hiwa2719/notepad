@@ -89,3 +89,9 @@
     text-align: center;
     height: 90%;
 }
+
+.time-input{
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+}
