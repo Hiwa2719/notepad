@@ -38,6 +38,7 @@ class NotesPage extends React.PureComponent {
 
     render() {
         const {notes, tasks} = this.state
+        this.props.setListType("Notes")
         return (
             <>
                 <Tabs showIndex={0}/>

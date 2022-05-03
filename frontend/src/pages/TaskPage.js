@@ -78,10 +78,10 @@ class TaskPage extends React.Component {
         return (
             <div className="d-flex flex-column p-1">
                 <div className="m-2 d-flex flex-row justify-content-between text-warning position-relative">
-                    <Link to="/">
+                    <Link to="/api/tasks/">
                         <ArrowLeft className="arrow-button " onClick={this.arrowHandler}/>
                     </Link>
-                    <Link to="/" className="text-decoration-none text-warning">
+                    <Link to="/api/tasks/" className="text-decoration-none text-warning">
                         {task ?
                             <h3 onClick={this.deleteTask}>Delete</h3> :
                             <h3 onClick={this.createHandler}>Done</h3>

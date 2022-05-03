@@ -1,10 +1,10 @@
 import React from "react";
 
 
-const Header = () => {
+const Header = props => {
     return (
         <div className="bg-black p-4 fs-1">
-            {window.location.href.includes('tasks') ? "Tasks": "Notes"} List
+            {props.listType} List
         </div>
     )
 }

@@ -19,7 +19,7 @@ class NotesPage extends React.PureComponent {
         this.getData('/api/tasks/', 'tasks')
     }
 
-    tasksChanged = ()=> {
+    tasksChanged = () => {
         this.getData('/api/tasks/', 'tasks')
     }
 
@@ -36,6 +36,7 @@ class NotesPage extends React.PureComponent {
 
     render() {
         const {tasks} = this.state
+        this.props.setListType("Tasks")
         return (
             <>
                 <Tabs showIndex={1}/>
@@ -48,7 +49,7 @@ class NotesPage extends React.PureComponent {
                 <div>
                     {
                         tasks.map(task =>
-                        <ReminderModal key={task.id} task={task} taskChanged={this.tasksChanged}/>
+                            <ReminderModal key={task.id} task={task} taskChanged={this.tasksChanged}/>
                         )
                     }
                 </div>
