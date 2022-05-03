@@ -2,17 +2,7 @@ import React from "react";
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
 import {ReactComponent as ArrowLeft} from "../assets/arrow-left.svg";
-
-
-const withRouter = (Component) => {
-    const Wrapper = (props) => {
-        const params = useParams()
-        return (
-            <Component params={params} {...props}/>
-        )
-    }
-    return Wrapper
-}
+import withRouter from '../components/withRouter'
 
 
 class NotePage extends React.Component {

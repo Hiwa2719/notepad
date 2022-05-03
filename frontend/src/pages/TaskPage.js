@@ -47,8 +47,8 @@ class TaskPage extends React.Component {
         let {text, task, time} = this.state
         if (!task) return
         if (!text) return this.deleteTask()
-        let date = new Date(time)
         task.text = text
+        let date = new Date(time)
         task.reminder_time = moment.utc(date)
         axios.put(`/api/tasks/update/${task.id}/`, task)
             .catch(error => {

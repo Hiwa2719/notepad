@@ -1,15 +1,7 @@
 import React from "react";
 import {ReactComponent as AddIcon} from "../assets/add.svg";
-import {useNavigate} from 'react-router-dom'
+import withRouter from "./withRouter";
 
-
-const withRouter = (Component) => {
-    const Wrapper = (props) => {
-        let navigate = useNavigate()
-        return <Component navigate={navigate} {...props}/>
-    }
-    return Wrapper
-}
 
 const AddButton = props => {
     const clickHandler = () => {
