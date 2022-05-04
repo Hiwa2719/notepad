@@ -7,15 +7,16 @@ import withRouter from "../components/withRouter";
 import Tabs from "../components/Tabs";
 
 
-class NotesPage extends React.PureComponent {
-    constructor() {
-        super();
+class TasksPage extends React.PureComponent {
+    constructor(props) {
+        super(props);
         this.state = {
-            tasks: [],
+            tasks: props.tasks,
         }
     }
 
     componentDidMount() {
+        this.props.setListType("Tasks")
         this.getData('/api/tasks/', 'tasks')
     }
 
@@ -36,7 +37,6 @@ class NotesPage extends React.PureComponent {
 
     render() {
         const {tasks} = this.state
-        this.props.setListType("Tasks")
         return (
             <>
                 <Tabs showIndex={1}/>
@@ -59,4 +59,4 @@ class NotesPage extends React.PureComponent {
 }
 
 
-export default withRouter(NotesPage)
+export default withRouter(TasksPage)

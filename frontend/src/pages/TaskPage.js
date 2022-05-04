@@ -77,7 +77,7 @@ class TaskPage extends React.Component {
     }
 
     rerenderState = () => {
-        this.props.setListType()
+        this.props.setTasks([])
     }
 
     render() {

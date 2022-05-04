@@ -8,15 +8,16 @@ import Tabs from '../components/Tabs'
 
 
 class NotesPage extends React.PureComponent {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             notes: [],
-            tasks: [],
+            tasks: props.tasks,
         }
     }
 
     componentDidMount() {
+        this.props.setListType("Notes")
         this.getData('/api/notes/', 'notes')
         this.getData('/api/tasks/', 'tasks')
     }
@@ -38,7 +39,6 @@ class NotesPage extends React.PureComponent {
 
     render() {
         const {notes, tasks} = this.state
-        this.props.setListType("Notes")
         return (
             <>
                 <Tabs showIndex={0}/>
