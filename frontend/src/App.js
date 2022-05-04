@@ -15,11 +15,11 @@ function App() {
     return (
         <Router>
             <main className="bg-dark vh-100 d-flex align-items-center justify-content-center">
-                <div className="row">
-                    <div className="col-sm-12">
-                        <div className="h-75 d-flex flex-column text-light w-100">
+                <div className="row w-100 h-75 justify-content-center align-items-center">
+                    <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-4 h-100">
+                        <div className="d-flex flex-column text-light w-100 h-100">
                             <Header listType={listType}/>
-                            <div className="bg-secondary h-100 py-1 position-relative">
+                            <div className="bg-secondary h-100 py-1 position-relative overflow-control">
                                 <Routes>
                                     <Route path='/' element={<NotesPage setListType={setListType} tasks={tasks}/>}/>
                                     <Route path='/api/notes/'

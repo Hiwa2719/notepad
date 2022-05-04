@@ -1,11 +1,16 @@
 
+
+* {
+    overflow: hidden;
+}
+
 .list-item:hover {
     background-color: black;
     cursor: pointer;
 }
 
 .textarea {
-    height: 63vh;
+    height: 56vh;
 }
 
 .textarea:focus,
@@ -94,4 +99,8 @@
     position: absolute;
     bottom: 5%;
     left: 0;
+}
+
+.overflow-control {
+    overflow-y: auto;
 }

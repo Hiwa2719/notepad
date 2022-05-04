@@ -17,7 +17,7 @@ const Tabs = props => {
     }
 
     return (
-        <div className="block-tabs">
+        <div className="block-tabs position-sticky top-0">
             <div className={showIndex === 0 ? "tab active-tab" : "tab"} onClick={() => goNotes()}>
                 <NoteSVG/>
             </div>
