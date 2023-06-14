@@ -1,8 +1,9 @@
 from django.contrib.auth.forms import UserCreationForm
 from rest_framework import status
-from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.views import TokenViewBase
 
 from .models import Note, Task
@@ -34,29 +35,20 @@ class CheckModelMixin:
         self.serializer_class = SERIALIZERS[model]
         return super().dispatch(request, *args, **kwargs)
 
-    def get_queryset(self):
-        return self.model.objects.all()
-
 
 class ItemsListView(CheckModelMixin, ListAPIView):
     def get_queryset(self):
         return self.model.objects.all().order_by('-updated')
 
 
-class ItemRetrieveView(CheckModelMixin, RetrieveAPIView):
-    pass
+class ItemsViewSet(CheckModelMixin, ModelViewSet):
+    """this view serves both notes and tasks"""
 
-
-class ItemDeleteView(CheckModelMixin, DestroyAPIView):
-    pass
-
-
-class ItemCreateView(CheckModelMixin, CreateAPIView):
-    pass
-
-
-class ItemUpdateView(CheckModelMixin, UpdateAPIView):
-    pass
+    def get_queryset(self):
+        queryset = self.model.objects.all()
+        if self.action == 'list':
+            return queryset.order_by('-updated')
+        return queryset
 
 
 class LoginView(TokenViewBase):
