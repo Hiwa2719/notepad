@@ -46,7 +46,7 @@ class NotePage extends React.Component {
         if (!note) return
         if (!text) return this.deleteNote()
         note.text = this.state.text
-        axios.put(`/api/notes/update/${note.id}/`, note)
+        axios.put(`/api/notes/${note.id}/`, note)
             .catch(error => {
                 console.log('Error')
                 console.log(error)
@@ -55,14 +55,14 @@ class NotePage extends React.Component {
     }
 
     deleteNote = () => {
-        axios.delete(`/api/notes/delete/${this.state.note.id}/`)
+        axios.delete(`/api/delete/${this.state.note.id}/`)
         this.rerenderState()
     }
 
     createHandler = () => {
         let text = this.state.text
         if (!text) return
-        axios.post('/api/notes/create/', {text: text})
+        axios.post('/api/notes/', {text: text})
             .catch(error => {
                 console.log('Error')
                 console.log(error)

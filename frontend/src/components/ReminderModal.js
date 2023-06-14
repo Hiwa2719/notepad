@@ -19,7 +19,7 @@ class ReminderModal extends React.Component {
 
     deleteTask = () => {
         const {task, taskChanged} = this.props
-        axios.delete(`/api/tasks/delete/${task.id}/`)
+        axios.delete(`/api/tasks/${task.id}/`)
             .then(response => {
                 console.log('success')
                 this.setState({

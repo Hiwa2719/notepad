@@ -18,7 +18,7 @@ class BaseAbstractModel(models.Model):
 
     def get_absolute_url(self):
         model = self.__class__.__name__.lower() + 's'
-        return reverse('api:get-note', kwargs={'model': model, 'pk': self.pk})
+        return reverse('api:item-detail', kwargs={'model': model, 'pk': self.pk})
 
     def formated_updated(self):
         return self.updated.strftime('%x %X')

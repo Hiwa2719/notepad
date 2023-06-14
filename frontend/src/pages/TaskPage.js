@@ -50,7 +50,7 @@ class TaskPage extends React.Component {
         task.text = text
         let date = new Date(time)
         task.reminder_time = moment.utc(date)
-        axios.put(`/api/tasks/update/${task.id}/`, task)
+        axios.put(`/api/tasks/${task.id}/`, task)
             .catch(error => {
                 console.log('Error')
                 console.log(error)
@@ -59,7 +59,7 @@ class TaskPage extends React.Component {
     }
 
     deleteTask = () => {
-        axios.delete(`/api/tasks/delete/${this.state.task.id}/`)
+        axios.delete(`/api/tasks/${this.state.task.id}/`)
         this.rerenderState()
     }
 
@@ -68,7 +68,7 @@ class TaskPage extends React.Component {
         if (!text) return
         let date = new Date(time)
         let reminder_time = moment.utc(date)
-        axios.post('/api/tasks/create/', {text: text, reminder_time: reminder_time})
+        axios.post('/api/tasks/', {text: text, reminder_time: reminder_time})
             .catch(error => {
                 console.log('Error')
                 console.log(error)
