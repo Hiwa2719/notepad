@@ -5,6 +5,8 @@ app_name = 'api'
 
 
 urlpatterns = [
+    path('login/', views.LoginView.as_view(), name='login'),
+    path('signup/', views.SignUpView.as_view(), name='signup'),
     path('<str:model>/', include([
         path('', views.ItemsListView.as_view(), name='get-note'),
         path('<int:pk>/', views.ItemRetrieveView.as_view(), name='get-note'),

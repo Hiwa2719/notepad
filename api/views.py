@@ -1,9 +1,12 @@
+from django.contrib.auth.forms import UserCreationForm
 from rest_framework import status
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework_simplejwt.views import TokenViewBase
 
 from .models import Note, Task
-from .serializers import NoteSerializer, TaskSerializer
+from .serializers import NoteSerializer, TaskSerializer, TokenSerializer
 
 MODELS = {
     'notes': Note,
@@ -54,3 +57,16 @@ class ItemCreateView(CheckModelMixin, CreateAPIView):
 
 class ItemUpdateView(CheckModelMixin, UpdateAPIView):
     pass
+
+
+class LoginView(TokenViewBase):
+    serializer_class = TokenSerializer
+
+
+class SignUpView(APIView):
+    def post(self, request, *args, **kwargs):
+        form = UserCreationForm(request.data)
+        if form.is_valid():
+            form.save()
+            return Response(status=status.HTTP_200_OK)
+        return Response(form.errors, status.HTTP_406_NOT_ACCEPTABLE)
